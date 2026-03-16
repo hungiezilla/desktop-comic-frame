@@ -1,0 +1,25 @@
+# Defines the minimum CMake version and imports the Pico SDK.
+# Initializes the project as phase2_i2c_test with C, C++, and ASM support.
+# Sets standard C/C++ versions and initializes the SDK environment.
+cmake_minimum_required(VERSION 3.13)
+include(pico_sdk_import.cmake)
+
+project(phase2_i2c_test C CXX ASM)
+
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
+
+pico_sdk_init()
+
+# Declares the executable and configures standard I/O routing.
+# Enables TinyUSB CDC output and explicitly disables physical UART.
+# Links standard library and required hardware-specific I2C library.
+# Generates the final .uf2 binary for BOOTSEL flashing.
+add_executable(phase2_i2c_test main.c)
+
+pico_enable_stdio_usb(phase2_i2c_test 1)
+pico_enable_stdio_uart(phase2_i2c_test 0)
+
+target_link_libraries(phase2_i2c_test pico_stdlib hardware_i2c hardware_spi hardware_clocks hardware_xosc hardware_pll)
+
+pico_add_extra_outputs(phase2_i2c_test)

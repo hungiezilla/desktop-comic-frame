@@ -1,0 +1,14 @@
+build/
+out/
+.cache/
+CMakeFiles/
+CMakeCache.txt
+*.dir/
+*.o
+*.exe
+*.dll
+*.so
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.user
